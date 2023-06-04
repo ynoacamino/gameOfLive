@@ -1,38 +1,40 @@
-import { useState, React } from 'react';
-import reactLogo from './assets/react.svg';
+/* eslint-disable react-hooks/exhaustive-deps */
+import {
+  useState, React, useEffect, useRef,
+} from 'react';
 import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
+  const [boxes, setBoxes] = useState(100);
+  const numBoxes = useRef();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((cuenta) => cuenta + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const listenInput = () => {
+    console.log(numBoxes.current.e.target);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((cuenta) => cuenta + 1)}>
-          count is
-          {' '}
-          {count}
-        </button>
-        <p>
-          Edit
-          {' '}
-          <code>src/App.jsx</code>
-          {' '}
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button type="button" onClick={() => setCount((cuenta) => cuenta + 1)}>
+        {count}
+      </button>
+      <input
+        type="number"
+        ref={numBoxes}
+      />
+      <button type="button" onClick={listenInput}>
+        Aceptar
+      </button>
+      <button type="button">
+        {boxes}
+      </button>
     </>
   );
 }
