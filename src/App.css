@@ -1,35 +1,3 @@
 body {
   overflow: hidden;
 }
-
-.read-the-docs {
-  color: #888;
-}
-
-
-.tablero {
-  width: 100vmax;
-  height: 100vmax;
-  display: grid;
-  grid-template-columns: repeat(50,1fr);
-  grid-template-rows: repeat(1,1fr);
-  background-color: transparent;
-  border:solid thin black;
-}
-
-.column {
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  grid-template-rows: repeat(50,1fr);
-  background-color: #313131;
-}
-
-.box {
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.live {
-  background-color: #c9c9c9;
-}
