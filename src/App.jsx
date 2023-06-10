@@ -4,30 +4,33 @@ import {
   useState, React, useEffect, useRef,
 } from 'react';
 import './App.css';
+import { createArrays, law } from './test/util';
 
 function App() {
-  const createArrays = (num) => {
-    const elArray = [];
-    for (let i = 0; i < num; i += 1) {
-      elArray.push(Array(num).fill(0));
-    }
-    return (elArray);
-  };
   const [count, setCount] = useState(0);
   const [boxes, setBoxes] = useState(100);
   const numBoxes = useRef();
-  const [tablero, setTablero] = useState(createArrays(50));
+  const [tablero, setTablero] = useState(createArrays(boxes));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((cuenta) => cuenta + 1);
+      setTablero((table) => {
+        const newTable = createArrays(boxes);
+        table.forEach((col, x) => {
+          col.forEach((cel, y) => {
+            newTable[x][y] = law(table, x, y, cel);
+          });
+        });
+        return [...newTable];
+      });
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   const listenInput = () => {
-    setBoxes(numBoxes.current.value);
-    console.log('hola');
+    setBoxes(Number(numBoxes.current.value));
+    setTablero(createArrays(Number(numBoxes.current.value)));
   };
 
   const changeLIve = (live, x, y) => {
@@ -53,9 +56,9 @@ function App() {
       <button type="button">
         {boxes}
       </button>
-      <div className="tablero">
+      <div className="tablero" style={{ gridTemplateColumns: `repeat(${boxes},1fr)` }}>
         {tablero.map((n, x) => (
-          <div className="column">
+          <div className="column" style={{ gridTemplateRows: `repeat(${boxes},1fr)` }}>
             {n.map((live, y) => (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events
               <div
