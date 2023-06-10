@@ -17,9 +17,6 @@ const law = (arr, x, y, status) => {
   ];
   let numBeside = 0;
   beside.forEach((cel) => { if (cel === 1) numBeside += 1; });
-  console.log({
-    numBeside, x, y, status,
-  });
   if (status === 1) {
     if (numBeside > 1 && numBeside < 4) return 1;
     return 0;
@@ -27,6 +24,4 @@ const law = (arr, x, y, status) => {
   return 0;
 };
 
-const suma = (a, b) => a + b;
-
-export { createArrays, law, suma };
+export { createArrays, law };
