@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     'react',
     'react-hooks',
+    'jest',
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
@@ -34,5 +35,10 @@ module.exports = {
         message: 'Unexpected property on console object was called',
       },
     ],
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
+    'jest/prefer-to-have-length': 'warn',
+    'jest/valid-expect': 'error',
   },
 };
