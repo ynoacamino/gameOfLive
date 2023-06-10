@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { createArrays, law, suma } from './test/util.js';
-
+import { suma } from './test/util';
+/*
 const test1 = () => {
   console.log('Test 1');
   const arr = createArrays(4);
@@ -39,3 +39,8 @@ const test2 = () => {
 
 test1();
 test2();
+*/
+
+test('test1', () => {
+  expect(suma(1, 2)).toBe(3);
+});
