@@ -1,12 +1,5 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.card {
-  padding: 2em;
+body {
+  overflow: hidden;
 }
 
 .read-the-docs {
@@ -15,8 +8,8 @@
 
 
 .tablero {
-  width: 90vh;
-  height: 90vh;
+  width: 100vmax;
+  height: 100vmax;
   display: grid;
   grid-template-columns: repeat(50,1fr);
   grid-template-rows: repeat(1,1fr);
@@ -33,7 +26,6 @@
 
 .box {
   text-align: center;
-  font-size:40px;
   cursor: pointer;
   user-select: none;
 }
