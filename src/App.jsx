@@ -10,7 +10,6 @@ import TableLive from './TableLIVE/TableLIVE';
 import Options from './Options/Options';
 
 function App() {
-  // eslint-disable-next-line no-unused-vars
   const [boxes, setBoxes] = useState(Math.round(window.screen.width / 28));
   const [tablero, setTablero] = useState(createArrays(boxes));
   const [live, setLive] = useState(false);
