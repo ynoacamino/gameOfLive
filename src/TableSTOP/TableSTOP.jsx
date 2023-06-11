@@ -1,24 +1,24 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './TableSTOP.css';
 
-function Table({ tablero, boxes, setingTablero }) {
-  const [tab, setTab] = useState(tablero);
-
-  useEffect(() => () => setingTablero(tab), []);
-
+function Table({ tablero, boxes, setTablero }) {
   const changeLIve = (live, x, y) => {
-    setTab((table) => {
+    setTablero((table) => {
       const newTable = table;
       newTable[x][y] = live === 1 ? 0 : 1;
       return [...newTable];
     });
   };
 
+  const onMoveClick = ({ buttons }, x, y) => {
+    if (buttons === 1 && x !== undefined) {
+      changeLIve(0, x, y);
+    }
+  };
+
   return (
     <div className="tablero" style={{ gridTemplateColumns: `repeat(${boxes},1fr)` }}>
-      {tab.map((n, x) => (
+      {tablero.map((n, x) => (
         <div className="column" style={{ gridTemplateRows: `repeat(${boxes},1fr)` }}>
           {n.map((live, y) => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -26,6 +26,7 @@ function Table({ tablero, boxes, setingTablero }) {
               aria-hidden
               role="button"
               onClick={() => changeLIve(live, x, y)}
+              onMouseEnter={(e) => onMoveClick(e, x, y)}
               className={`box ${live === 1 ? 'live' : 'dead'}`}
             />
           ))}
