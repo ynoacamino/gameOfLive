@@ -3,7 +3,9 @@
 import { React, useEffect, useState } from 'react';
 import { law, createArrays } from '../test/util';
 
-function Table({ tablero, boxes, setingTablero }) {
+function Table({
+  tablero, boxes, setingTablero, velo,
+}) {
   const [tab, setTab] = useState(tablero);
 
   useEffect(() => {
@@ -18,12 +20,16 @@ function Table({ tablero, boxes, setingTablero }) {
         });
         return [...newTable];
       });
-    }, 500);
+    }, velo ? 150 : 500);
     return () => {
       clearInterval(interval);
-      setingTablero(tab);
     };
-  }, []);
+  }, [velo]);
+
+  useEffect(() => {
+    setingTablero(tab);
+  }, [tab]);
+
   return (
     <div className="tablero" style={{ gridTemplateColumns: `repeat(${boxes},1fr)` }}>
       {tab.map((n) => (
