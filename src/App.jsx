@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+// Un saludo desde la terminal de termux en mi tablet
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   useState, React,
